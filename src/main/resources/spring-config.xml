@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+              <property name="location" value="data.properties"/>
+       </bean>
+
+       <bean class="Contact" id="contact1">
+              <property name="name" value="${name}"/>
+              <property name="email" value="${email}"/>
+              <property name="phone" value="${phone}"/>
+       </bean>
+
+       <bean class="Contact" id="contact2">
+              <property name="name" value="contact2"/>
+              <property name="email" value="contact2@email"/>
+              <property name="phone" value="+2222222222"/>
+       </bean>
+
+       <bean class="Contact" id="contact3">
+              <constructor-arg name="name" value="contact3"/>
+              <constructor-arg name="email" value="contact3@email"/>
+              <constructor-arg name="phone" value="+333333333"/>
+       </bean>
+
+       <bean class="ContactDao" id="contactDao">
+              <property name="contacts">
+                     <list>
+                            <ref bean="contact1"/>
+                            <ref bean="contact2"/>
+                            <ref bean="contact3"/>
+                     </list>
+              </property>
+       </bean>
+</beans>
