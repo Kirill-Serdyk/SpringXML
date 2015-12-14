@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
        <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
               <property name="location" value="data.properties"/>
+       </bean>
+
+       <bean class="ContactServiceImp" id="contactServiceImp">
+              <property name="contactDao" ref="contactDao"/>
        </bean>
 
        <bean class="Contact" id="contact1">
@@ -13,11 +18,10 @@
               <property name="phone" value="${phone}"/>
        </bean>
 
-       <bean class="Contact" id="contact2">
-              <property name="name" value="contact2"/>
-              <property name="email" value="contact2@email"/>
-              <property name="phone" value="+2222222222"/>
-       </bean>
+       <bean class="Contact" id="contact2"
+               p:name="contact2"
+               p:email="contact2@email"
+               p:phone="+2222222222"/>
 
        <bean class="Contact" id="contact3">
               <constructor-arg name="name" value="contact3"/>
